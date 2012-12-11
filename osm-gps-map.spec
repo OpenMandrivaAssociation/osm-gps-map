@@ -6,7 +6,7 @@
 
 Name:           osm-gps-map
 Version:        0.7.3
-Release:        %mkrel 1
+Release:        2
 Summary:        Gtk+ widget for displaying OpenStreetMap tiles
 Group:          System/Libraries
 License:        GPLv2
@@ -52,17 +52,12 @@ The development files for the %{name} Gtk+ widget.
 %make V=1
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 #handle docs inf files section
 rm -rf %{buildroot}/usr/doc/osm-gps-map
 
-%clean
-rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root)
 %doc AUTHORS README NEWS
 %{_libdir}/lib%{lname}.so.%{major}*
 
@@ -71,6 +66,12 @@ rm -rf %{buildroot}
 %doc %{_datadir}/gtk-doc/html/lib%{lname}
 %{_includedir}/%{lname}
 %{_libdir}/lib%{lname}.so
-%{_libdir}/lib%{lname}.la
 %{_libdir}/pkgconfig/%{lname}.pc
+
+
+
+%changelog
+* Mon Oct 31 2011 Andrey Bondrov <abondrov@mandriva.org> 0.7.3-1
++ Revision: 708033
+- imported package osm-gps-map
 
