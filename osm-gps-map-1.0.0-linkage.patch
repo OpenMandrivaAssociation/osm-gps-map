@@ -1,0 +1,13 @@
+diff -Naur -x '*~' -x '*.rej' -x '*.orig' osm-gps-map-1.0.0/src/Makefile.am osm-gps-map-1.0.0-linkage/src/Makefile.am
+--- osm-gps-map-1.0.0/src/Makefile.am	2013-06-18 22:20:39.000000000 +0200
++++ osm-gps-map-1.0.0-linkage/src/Makefile.am	2013-06-27 22:49:45.196302831 +0200
+@@ -29,7 +29,8 @@
+ 	$(no_undefined)
+ 
+ libosmgpsmap_1_0_la_LIBADD =    \
+-    $(OSMGPSMAP_LIBS)
++    $(OSMGPSMAP_LIBS) \
++    -lm
+ 
+ sources_private_h =         \
+ 	converter.h             \
