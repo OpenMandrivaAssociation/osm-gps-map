@@ -1,2 +1,4 @@
+removed_sources:
+  osm-gps-map-0.7.3.tar.gz: fae4357ffa18e511d5a642c2e65f5316a123ba93
 sources:
-  "osm-gps-map-0.7.3.tar.gz": fae4357ffa18e511d5a642c2e65f5316a123ba93
+  osm-gps-map-1.0.1.tar.gz: 7593cbb4a2e7338474bad9b46ede71f9233e9312

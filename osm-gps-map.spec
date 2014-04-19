@@ -1,25 +1,39 @@
 %define lname	osmgpsmap
 
-%define major	2
-%define libname	%mklibname %{lname} %{major}
-%define devname	%mklibname %{lname} -d
+%define major   0
+%define api     1.0
+%define gir_major       1.0
+%define libname %mklibname %{lname} %{api} %{major}
+%define devname %mklibname %{lname} %{api} -d
+%define gir_name %mklibname %{lname}-gir %{gir_major}
 
 Name:           osm-gps-map
-Version:        0.7.3
-Release:        2
+Version:        1.0.1
+Release:        1
 Summary:        Gtk+ widget for displaying OpenStreetMap tiles
 Group:          System/Libraries
 License:        GPLv2
 URL:            http://nzjrs.github.com/osm-gps-map/
 Source0:        http://www.johnstowers.co.nz/files/%{name}/%{name}-%{version}.tar.gz
-Patch0:		osm-gps-map-0.7.3-linkage.patch
-BuildRequires:	gtk+2-devel
-BuildRequires:	libsoup-devel
+Patch0:		osm-gps-map-1.0.0-linkage.patch
+BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	python-gi
+BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:  gtk-doc
+BuildRequires:  gnome-common
 
 %description
 A Gtk+ widget that when given GPS co-ordinates, draws a GPS track, and
 points of interest on a moving map display. Downloads map data from a
 number of websites, including openstreetmap.org.
+
+%package -n %{gir_name}
+Summary:        GObject Introspection interface description for %{name}
+Group:          System/Libraries
+Requires:       %{libname} = %{version}-%{release}
+
+%description -n %{gir_name}
+GObject Introspection interface description for %{name}.
 
 %package -n %{libname}
 Summary:	Gtk+ widget for displaying OpenStreetMap tiles
@@ -43,12 +57,12 @@ The development files for the %{name} Gtk+ widget.
 
 %prep
 %setup -q
-%patch0 -p0 -b .linkage
+%apply_patches
 
 %build
+[[ -f configure ]] || NOCONFIGURE=yes gnome-autogen.sh
 %configure2_5x \
-	--disable-static \
-	--disable-introspection
+	--disable-static --enable-introspection
 %make V=1
 
 %install
@@ -59,19 +73,17 @@ rm -rf %{buildroot}/usr/doc/osm-gps-map
 
 %files -n %{libname}
 %doc AUTHORS README NEWS
-%{_libdir}/lib%{lname}.so.%{major}*
+%{_libdir}/lib%{lname}-%{api}.so.%{major}*
 
 %files -n %{devname}
 %defattr(-,root,root)
-%doc %{_datadir}/gtk-doc/html/lib%{lname}
-%{_includedir}/%{lname}
-%{_libdir}/lib%{lname}.so
-%{_libdir}/pkgconfig/%{lname}.pc
+#doc %{_datadir}/gtk-doc/html/lib%{lname}
+%{_includedir}/%{lname}-%{api}
+%{_libdir}/lib%{lname}-%{api}.so
+%{_libdir}/pkgconfig/%{lname}-%{api}.pc
 
 
-
-%changelog
-* Mon Oct 31 2011 Andrey Bondrov <abondrov@mandriva.org> 0.7.3-1
-+ Revision: 708033
-- imported package osm-gps-map
+%files -n %{gir_name}
+%{_libdir}/girepository-1.0/*-%{gir_major}.typelib
+%{_datadir}/gir-1.0/*-%{gir_major}.gir
 
