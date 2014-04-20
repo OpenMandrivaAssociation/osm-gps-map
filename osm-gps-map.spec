@@ -19,6 +19,7 @@ Patch0:		osm-gps-map-1.0.0-linkage.patch
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	python-gi
 BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:  gtk-doc
 BuildRequires:  gnome-common
 
