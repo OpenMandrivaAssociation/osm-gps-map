@@ -9,7 +9,7 @@
 
 Name:           osm-gps-map
 Version:        1.0.1
-Release:        1
+Release:        2
 Summary:        Gtk+ widget for displaying OpenStreetMap tiles
 Group:          System/Libraries
 License:        GPLv2
