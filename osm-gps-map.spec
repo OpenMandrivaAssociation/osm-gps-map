@@ -72,16 +72,14 @@ The development files for the %{name} Gtk+ widget.
 rm -rf %{buildroot}/usr/doc/osm-gps-map
 
 %files -n %{libname}
-%doc AUTHORS README NEWS
-%{_libdir}/lib%{lname}-%{api}.so.%{major}*
+%{_docdir}/%{name}
+%{_libdir}/lib%{lname}-%{api}.so.%{major}{,.*}
 
 %files -n %{devname}
-%defattr(-,root,root)
-#doc %{_datadir}/gtk-doc/html/lib%{lname}
+%doc %{_datadir}/gtk-doc/html/lib%{lname}/
 %{_includedir}/%{lname}-%{api}
 %{_libdir}/lib%{lname}-%{api}.so
 %{_libdir}/pkgconfig/%{lname}-%{api}.pc
-
 
 %files -n %{gir_name}
 %{_libdir}/girepository-1.0/*-%{gir_major}.typelib
