@@ -1,6 +1,6 @@
 %define lname	osmgpsmap
 
-%define major   0
+%define major   1
 %define api     1.0
 %define gir_major       1.0
 %define libname %mklibname %{lname} %{api} %{major}
@@ -8,13 +8,13 @@
 %define gir_name %mklibname %{lname}-gir %{gir_major}
 
 Name:           osm-gps-map
-Version:        1.0.1
-Release:        2
+Version:        1.1.0
+Release:        1
 Summary:        Gtk+ widget for displaying OpenStreetMap tiles
 Group:          System/Libraries
 License:        GPLv2
 URL:            http://nzjrs.github.com/osm-gps-map/
-Source0:        http://www.johnstowers.co.nz/files/%{name}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/nzjrs/osm-gps-map/releases/download/%{version}/%{name}-%{version}.tar.gz
 Patch0:		osm-gps-map-1.0.0-linkage.patch
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	python-gi
@@ -58,31 +58,28 @@ The development files for the %{name} Gtk+ widget.
 
 %prep
 %setup -q
-%apply_patches
 
 %build
 [[ -f configure ]] || NOCONFIGURE=yes gnome-autogen.sh
 %configure2_5x \
 	--disable-static --enable-introspection
-%make V=1
+%make_build V=1
 
 %install
-%makeinstall_std
+%make_install
 
 #handle docs inf files section
 rm -rf %{buildroot}/usr/doc/osm-gps-map
 
 %files -n %{libname}
-%doc AUTHORS README NEWS
-%{_libdir}/lib%{lname}-%{api}.so.%{major}*
+%{_docdir}/%{name}
+%{_libdir}/lib%{lname}-%{api}.so.%{major}{,.*}
 
 %files -n %{devname}
-%defattr(-,root,root)
-#doc %{_datadir}/gtk-doc/html/lib%{lname}
+%doc %{_datadir}/gtk-doc/html/lib%{lname}/
 %{_includedir}/%{lname}-%{api}
 %{_libdir}/lib%{lname}-%{api}.so
 %{_libdir}/pkgconfig/%{lname}-%{api}.pc
-
 
 %files -n %{gir_name}
 %{_libdir}/girepository-1.0/*-%{gir_major}.typelib
