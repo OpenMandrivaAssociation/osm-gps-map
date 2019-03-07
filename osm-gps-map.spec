@@ -1,6 +1,6 @@
 %define lname	osmgpsmap
 
-%define major   0
+%define major   1
 %define api     1.0
 %define gir_major       1.0
 %define libname %mklibname %{lname} %{api} %{major}
