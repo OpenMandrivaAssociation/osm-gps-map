@@ -8,7 +8,7 @@
 %define gir_name %mklibname %{lname}-gir %{gir_major}
 
 Name:           osm-gps-map
-Version:        1.1.0
+Version:        1.2.0
 Release:        1
 Summary:        Gtk+ widget for displaying OpenStreetMap tiles
 Group:          System/Libraries
