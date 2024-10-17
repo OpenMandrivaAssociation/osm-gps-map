@@ -13,7 +13,7 @@ Release:        1
 Summary:        Gtk+ widget for displaying OpenStreetMap tiles
 Group:          System/Libraries
 License:        GPLv2
-URL:            http://nzjrs.github.com/osm-gps-map/
+URL:            https://nzjrs.github.com/osm-gps-map/
 Source0:        https://github.com/nzjrs/osm-gps-map/releases/download/%{version}/%{name}-%{version}.tar.gz
 Patch0:		osm-gps-map-1.0.0-linkage.patch
 BuildRequires:	pkgconfig(gtk+-3.0)
