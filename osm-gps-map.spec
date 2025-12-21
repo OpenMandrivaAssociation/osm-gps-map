@@ -16,6 +16,11 @@ License:        GPLv2
 URL:            https://nzjrs.github.com/osm-gps-map/
 Source0:        https://github.com/nzjrs/osm-gps-map/releases/download/%{version}/%{name}-%{version}.tar.gz
 Patch0:		osm-gps-map-1.0.0-linkage.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	python-gi
 BuildRequires:	pkgconfig(libsoup-2.4)
