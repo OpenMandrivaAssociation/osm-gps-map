@@ -67,6 +67,9 @@ The development files for the %{name} Gtk+ widget.
 
 %build
 [[ -f configure ]] || NOCONFIGURE=yes gnome-autogen.sh
+# Needed or build ends with error: /usr/lib64/clang/22/include/__stddef_nullptr_t.h:26: syntax error, 
+# unexpected identifier, expecting ',' or ';' in '# 26 "/usr/lib64/clang/22/include/__stddef_nullptr_t.h" 3' at 'nullptr_t'
+# ERROR: error caught during scanner parsing
 %global optflags %{optflags} -std=gnu17
 %configure \
 	--disable-static --enable-introspection
