@@ -67,6 +67,7 @@ The development files for the %{name} Gtk+ widget.
 
 %build
 [[ -f configure ]] || NOCONFIGURE=yes gnome-autogen.sh
+%global optflags %{optflags} -std=gnu17
 %configure \
 	--disable-static --enable-introspection
 %make_build V=1
