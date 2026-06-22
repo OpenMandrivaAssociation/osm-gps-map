@@ -15,7 +15,7 @@ Group:          System/Libraries
 License:        GPLv2
 URL:            https://nzjrs.github.com/osm-gps-map/
 Source0:        https://github.com/nzjrs/osm-gps-map/releases/download/%{version}/%{name}-%{version}.tar.gz
-Patch0:		osm-gps-map-1.0.0-linkage.patch
+#Patch0:		osm-gps-map-1.0.0-linkage.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
@@ -25,6 +25,7 @@ BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	python-gi
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(harfbuzz-gobject)
 BuildRequires:  gtk-doc
 BuildRequires:  gnome-common
 
@@ -62,11 +63,11 @@ Provides:	lib%{lname}-devel = %{version}-%{release}
 The development files for the %{name} Gtk+ widget.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 [[ -f configure ]] || NOCONFIGURE=yes gnome-autogen.sh
-%configure2_5x \
+%configure \
 	--disable-static --enable-introspection
 %make_build V=1
 
